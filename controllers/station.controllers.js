@@ -60,9 +60,24 @@ const updateStation = async (req, res) => {
 
 }
 
+const deleteStation  = async (req, res) => {
+    let {id} = req.params; 
+    try {
+        Station.destroy({
+            where: {
+                id
+            }
+        });
+        res.status(200).send("Xoá thành công !!!")
+    } catch (error){
+        res.status(500).send(error)
+    }
+}
+
 module.exports = {
     createStation, 
     getAllStation,
     getDetailStation, 
-    updateStation
+    updateStation, 
+    deleteStation
 }
