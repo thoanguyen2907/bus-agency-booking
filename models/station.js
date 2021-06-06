@@ -14,8 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Station.init({
-    name: DataTypes.STRING,
-    address: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+      validate: {
+        len: [3,30],
+      }
+    },
+   
+    address:{
+      type: DataTypes.STRING,
+      allowNull: false, 
+      validate: {
+        isIn: [['SG', 'LA', 'CM']], 
+      }
+    },
     province: DataTypes.STRING
   }, {
     sequelize,

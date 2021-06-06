@@ -1,5 +1,5 @@
 const {Station} = require("../models");
-
+const {Op} = require("sequelize"); 
 
 const createStation = async (req, res) => {
     const {name, address, province} = req.body; 
@@ -12,10 +12,22 @@ const createStation = async (req, res) => {
 }
 
 const getAllStation = async (req, res) => {
+    const {name} = req.query; 
+    console.log(name); 
     try {
-        const stationList = await Station.findAll();  
-        res.status(200).send(stationList); 
-
+        if(name) {
+            const stationList = await Station.findAll({
+                where: {
+                    name : {
+                        [Op.like]: `%${name}%`, 
+                    }
+                },
+            });  
+            res.status(200).send(stationList); 
+        } else {
+            const stationList = await Station.findAll();  
+            res.status(200).send(stationList); 
+        }
     } catch (error) {
         res.status(500).send(error); 
 
@@ -60,9 +72,25 @@ const updateStation = async (req, res) => {
 
 }
 
+const deleteStation  = async (req, res) => {
+    let {id} = req.params; 
+    try {
+        Station.destroy({
+            where: {
+                id
+            }
+        });
+        res.status(200).send("Xoá thành công !!!")
+    } catch (error){
+        res.status(500).send(error)
+    }
+}
+
+
 module.exports = {
     createStation, 
     getAllStation,
     getDetailStation, 
-    updateStation
+    updateStation, 
+    deleteStation
 }
