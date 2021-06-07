@@ -1,6 +1,10 @@
 
 const {User} = require("../models"); 
 
+const {jwt} = require("jsonwebtoken"); 
+
+const bcrypt = require("bcryptjs"); 
+
 const register = async (req, res) => {
     const {name, email, password, numberPhone} = req.body; 
 
@@ -27,7 +31,12 @@ const login = async (req, res) => {
 //kiểm tra mật khẩu đúng hay ko
 const isAuth = bcrypt.compareSync(password, user.password); 
 if(isAuth){
-    res.status(200).send({message: "Đăng nhập thành công"})
+    const token = jwt.sign({email: user.email, type: user.type}, "thoa-nguyen-2907", {expiresIn: 60*60});
+    
+    
+
+
+    res.status(200).send({message: "Đăng nhập thành công", token}); 
 } else {
     res.status(500).send({message: "Tài khoản không hợp lệ"}); 
 
