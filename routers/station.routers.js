@@ -1,11 +1,12 @@
 const  express = require("express");
 const { createStation, getAllStation, getDetailStation, updateStation, deleteStation } = require("../controllers/station.controllers");
+const { authenticate } = require("../middlewares/auth/authenticate");
 const { checkExist } = require("../middlewares/validations/checkExist");
 const {Station} = require("../models");
 
 const stationRouter = express.Router()
 
-stationRouter.post("/", createStation); 
+stationRouter.post("/", authenticate, createStation); 
 
 stationRouter.get("/", getAllStation); 
 
