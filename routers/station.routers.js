@@ -12,12 +12,12 @@ stationRouter.get("/", getAllStation);
 
 stationRouter.get("/:id", getDetailStation); 
 
-stationRouter.put("/:id",
+stationRouter.put("/:id",authenticate, 
 checkExist(Station),
 updateStation
   ); 
 
-stationRouter.delete("/:id", 
+stationRouter.delete("/:id", authenticate, 
 checkExist(Station),
 deleteStation)
 
