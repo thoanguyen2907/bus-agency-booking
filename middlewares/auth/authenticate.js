@@ -12,9 +12,11 @@ const authenticate = async  (req, res, next ) => {
         if(decode) {
             req.user = decode; 
             return next()
-         } 
+         } else {
+             res.status(401).send("You do not log in !!!")
+         }
     } catch(error) {
-        res.status(500).send(error)
+        res.status(401).send("You do not log in !!!")
     }
 
 }
