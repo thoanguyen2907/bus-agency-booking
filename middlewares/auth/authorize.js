@@ -1,7 +1,7 @@
-const authorize = (req, res , next ) => {
+const authorize = (arrType) => (req, res , next ) => {
     const {user} = req; 
 
-    if(["Admin"].findIndex(ele => ele === user.type) > -1 ){
+    if(arrType.findIndex(ele => ele === user.type) > -1 ){
         next()
 
     } else {

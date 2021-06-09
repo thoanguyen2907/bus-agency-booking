@@ -8,7 +8,7 @@ const authenticate = async  (req, res, next ) => {
 
     try{
         const decode = jwt.verify(token, "thoa-nguyen-2907"); 
-        console.log(decode);
+
         if(decode) {
             req.user = decode; 
             return next()

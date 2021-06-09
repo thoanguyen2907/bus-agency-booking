@@ -7,7 +7,7 @@ const {Station} = require("../models");
 
 const stationRouter = express.Router()
 
-stationRouter.post("/", authenticate,authorize, createStation); 
+stationRouter.post("/", authenticate,authorize(["Admin"]), createStation); 
 
 stationRouter.get("/", getAllStation); 
 

@@ -30,18 +30,12 @@ const login = async (req, res) => {
                 email
             }
         });
-        console.log(user);
         if (user) {
             //kiểm tra mật khẩu đúng hay ko
             const isAuth = bcrypt.compareSync(password, user.password);
-            console.log("isAuth", isAuth)
             if (isAuth) {
-                console.log("isAuth", isAuth);
-                console.log("user.email", user.email);
-                console.log("user.type", user.type);
-
+            
                 const token = jwt.sign({ email: user.email, type: user.type }, "thoa-nguyen-2907", { expiresIn: 60 * 60 });
-                console.log("token", token);
                 
                 res.status(200).send({ message: "Đăng nhập thành công", token });
             } else {
