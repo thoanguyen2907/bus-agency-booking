@@ -49,7 +49,23 @@ const login = async (req, res) => {
     }
 }
 
+const uploadAvatar = async (req, res) => {
+    const {file} = await req; 
+    const urlImage = `http://localhost:3000/${file.path}`
+    const {user} = await req; 
+    const userFound = await User.findOne({
+        where: {
+            email: user.email
+        }
+    }); 
+    userFound.avatar = urlImage; 
+    await userFound.save(); 
+    res.send(urlImage); 
+    
+}
+
 module.exports = {
     register,
-    login
+    login,
+    uploadAvatar
 }

@@ -13,7 +13,7 @@ app.use(express.json());
 //cài static files 
 
 const publicPathDirectory = path.join(__dirname, "./public");
-app.use(express.static(publicPathDirectory)); 
+app.use("/public",express.static(publicPathDirectory)); 
 
 app.use("/api/v1", rootRouter); 
 
