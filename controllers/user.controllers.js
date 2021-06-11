@@ -5,15 +5,22 @@ const  jwt  = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 
+//  const gravatarUrl = require("gravatar-url"); 
+
+
+
 const register = async (req, res) => {
     const { name, email, password, numberPhone } = req.body;
 
     try {
+        //tạo avatar mặc định 
+        // const avatarUrl = gravatarUrl('sindresorhus@gmail.com'); 
+
         //tạo ra 1 chuỗi ngẫu nhiên 
         const salt = bcrypt.genSaltSync(10);
         //mã hoá chuỗi ngẫu nhiên salt + password 
         const hashPassword = bcrypt.hashSync(password, salt);
-        const newUser = await User.create({ name, email, password: hashPassword, numberPhone, type: "Client" });
+        const newUser = await User.create({ name, email, password: hashPassword, numberPhone, type: "Client"});
         res.status(201).send(newUser);
     } catch (error) {
         res.status(500).send(error);
@@ -60,7 +67,7 @@ const uploadAvatar = async (req, res) => {
     }); 
     userFound.avatar = urlImage; 
     await userFound.save(); 
-    res.send(urlImage); 
+    res.send(userFound); 
     
 }
 
