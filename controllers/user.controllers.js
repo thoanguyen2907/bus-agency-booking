@@ -5,13 +5,14 @@ const  jwt  = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 
+const nodemailer = require("nodemailer");
+
 //  const gravatarUrl = require("gravatar-url"); 
 
 
 
 const register = async (req, res) => {
     const { name, email, password, numberPhone } = req.body;
-
     try {
         //tạo avatar mặc định 
         // const avatarUrl = gravatarUrl('sindresorhus@gmail.com'); 
@@ -21,10 +22,48 @@ const register = async (req, res) => {
         //mã hoá chuỗi ngẫu nhiên salt + password 
         const hashPassword = bcrypt.hashSync(password, salt);
         const newUser = await User.create({ name, email, password: hashPassword, numberPhone, type: "Client"});
+
         res.status(201).send(newUser);
+     
     } catch (error) {
         res.status(500).send(error);
     }
+//     try {
+//         const output = `<p> You have registered to the website </p>
+//     <ul>
+//     <li>Name: ${name}</li>
+//     <li>Email: ${email}</li>
+//     <li>Number phone: ${numberPhone}</li>
+//     </ul>`;
+// // create reusable transporter object using the default SMTP transport
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.ethereal.email',
+//     port: 587,
+//     auth: {
+//         user: 'anika47@ethereal.email',
+//         pass: 'd6kG1wUNEGD5Tf3n24'
+//     }
+// });
+
+// // send mail with defined transport object
+// let info = await transporter.sendMail({
+// from: '"Thoa Nguyen👻" <anika47@ethereal.email>', // sender address
+// to: email,  // list of receivers
+// subject: "Thanks for registration to the website", // Subject line
+// text: "Dear customer", // plain text body
+// html: output, // html body
+// });
+
+// console.log("Message sent: %s", info.messageId);
+
+// console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+// res.send("Email Sent"); 
+//     } catch(error){
+//         console.log(error)
+//     }
+
+    
 }
 
 const login = async (req, res) => {
