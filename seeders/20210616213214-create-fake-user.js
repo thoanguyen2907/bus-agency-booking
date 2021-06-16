@@ -1,0 +1,33 @@
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
+
+      await queryInterface.bulkInsert('users', [{
+       name: 'John Doe',
+       email: 'johndoe@gmail.com', 
+       password: '123123',
+      phone: '123123',
+      avatar: 'https://cdn.halloota.com/2020/04/husky-koomiset-kuvat.jpg', 
+      type: 'ADMIN'
+     }], {});
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+  }
+};
