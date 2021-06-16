@@ -18,6 +18,22 @@ module.exports = {
       createdAt: "2021-03-26 07:06:14",
       updatedAt: "2021-03-26 07:06:14"
 
+     }, 
+     {
+      name: "Bến Xe An Thới", 
+      address: "Lê Quang Sung, P.2, Q.6",
+      province: "Vĩnh Long",
+      createdAt: "2021-03-26 07:06:14",
+      updatedAt: "2021-03-26 07:06:14"
+
+     }, 
+     {
+      name: "Bến Xe Xuân Lộc", 
+      address: "Lê Quang Sung, P.2, Q.6",
+      province: "Đồng Nai",
+      createdAt: "2021-03-26 07:06:14",
+      updatedAt: "2021-03-26 07:06:14"
+
      }
 
     ], {});
