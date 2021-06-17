@@ -12,14 +12,14 @@ module.exports = {
      * }], {});
     */
 
-      await queryInterface.bulkInsert('trips', [
+      await queryInterface.bulkInsert('Trips', [
         {
        fromStation:1,
        toStation: 2, 
        price: 30,
        startTime: "2021-06-13 8:30:00", 
       createdAt: "2021-05-13 8:30:00",  
-      updateAt: "2021-05-14 8:30:00"
+      updatedAt: "2021-05-14 8:30:00"
      },
      {
       fromStation:2,
@@ -27,7 +27,7 @@ module.exports = {
       price: 40,
       startTime: "2021-06-13 8:30:00", 
      createdAt: "2021-05-13 8:30:00",  
-     updateAt: "2021-05-14 8:30:00"
+     updatedAt: "2021-05-14 8:30:00"
     },
     {
       fromStation:3,
@@ -35,7 +35,7 @@ module.exports = {
       price: 20,
       startTime: "2021-06-13 8:30:00", 
      createdAt: "2021-05-13 8:30:00",  
-     updateAt: "2021-05-14 8:30:00"
+     updatedAt: "2021-05-14 8:30:00"
     },
     {
       fromStation:1,
@@ -43,7 +43,7 @@ module.exports = {
       price: 10,
       startTime: "2021-06-13 8:30:00", 
      createdAt: "2021-05-13 8:30:00",  
-     updateAt: "2021-05-14 8:30:00"
+     updatedAt: "2021-05-14 8:30:00"
     },
 
     ], {});
@@ -57,6 +57,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-     await queryInterface.bulkDelete('trips', null, {});
+     await queryInterface.bulkDelete('Trips', null, {});
   }
 };
