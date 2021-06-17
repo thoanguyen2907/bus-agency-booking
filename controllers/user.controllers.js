@@ -1,5 +1,5 @@
 
-const { User } = require("../models");
+const { User, sequelize } = require("../models");
 
 const  jwt  = require("jsonwebtoken");
 
@@ -110,8 +110,21 @@ const uploadAvatar = async (req, res) => {
     
 }
 
+const getAllTrip = aysnc (req, res) => {
+  const [results] =  await  sequelize.query(
+        `select * from Users inner join Tickets on Users.id = Tickets.user_id
+        inner join Trips on Trips.id = Tickets.trip_id 
+        inner join Stations as fromSta on fromSta.id = Trips.fromStation 
+        inner join Stations as toSta on toSta.id = Trips.toStation; 
+        `); 
+    res.send(results); 
+
+
+}
+
 module.exports = {
     register,
     login,
-    uploadAvatar
+    uploadAvatar,
+     getAllTrip
 }
